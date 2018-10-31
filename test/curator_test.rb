@@ -1,8 +1,10 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'csv'
 require './lib/photograph'
 require './lib/artist'
 require './lib/curator'
+require './lib/file_io'
 
 class CuratorTest < Minitest::Test
 
@@ -53,6 +55,8 @@ class CuratorTest < Minitest::Test
                 artist_id: "3",
                 year: "1962"
                } )
+    @photo_data = './data/photographs.csv'
+    @artist_data = './data/artists.csv'
   end
 
   def test_it_exists
@@ -134,4 +138,19 @@ class CuratorTest < Minitest::Test
     assert_equal expected, actual
     assert_equal [], @curator.photographs_taken_by_artists_from("Argentina")
   end
+
+  def test_it_can_load_photographs_from_csv_file
+    @curator.load_photographs(@photo_data)
+    assert_equal 4, @curator.photographs.length
+  end
+
+  def test_it_can_load_artists_from_csv_file
+    @curator.load_artists(@artist_data)
+    assert_equal 6, @curator.artists.length
+  end
+
+  # def test_it_can_find_photos_by_date_range
+  #   expected = [@photo_1, @photo_4]
+  #   assert_equal expected, @curator.photographs_taken_between(1950..1965)
+  # end
 end
