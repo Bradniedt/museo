@@ -56,6 +56,7 @@ class CuratorTest < Minitest::Test
                 year: "1962"
                } )
     @photo_data = './data/photographs.csv'
+    @artist_data = './data/artists.csv'
   end
 
   def test_it_exists

@@ -1,5 +1,6 @@
 require './lib/file_io.rb'
 require './lib/photograph'
+require './lib/artist'
 require 'csv'
 
 class Curator
@@ -58,6 +59,13 @@ class Curator
     photo_hashes = FileIO.load_photographs(file)
     photo_hashes.map do |hash|
       @photographs << Photograph.new(hash)
+    end
+  end
+
+  def load_artists(file)
+    artist_hashes = FileIO.load_artists(file)
+    artist_hashes.map do |hash|
+      @artists << Artist.new(hash)
     end
   end
 end
