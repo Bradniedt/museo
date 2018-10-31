@@ -1,3 +1,7 @@
+require './lib/file_io.rb'
+require './lib/photograph'
+require 'csv'
+
 class Curator
   attr_reader :artists,
               :photographs
@@ -48,5 +52,12 @@ class Curator
     @photographs.find_all do |photograph|
       find_artist_by_id(photograph.artist_id).country == country
     end
-  end 
+  end
+
+  def load_photographs(file)
+    photo_hashes = FileIO.load_photographs(file)
+    photo_hashes.map do |hash|
+      @photographs << Photograph.new(hash)
+    end
+  end
 end

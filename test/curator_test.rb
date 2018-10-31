@@ -1,9 +1,10 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'csv'
 require './lib/photograph'
 require './lib/artist'
 require './lib/curator'
-require './data/photographs.csv'
+require './lib/file_io'
 
 class CuratorTest < Minitest::Test
 
@@ -138,6 +139,7 @@ class CuratorTest < Minitest::Test
   end
 
   def test_it_can_load_photographs_from_csv_file
-    assert_equal 4, @curator.load_photographs(@photo_data).length
+    @curator.load_photographs(@photo_data)
+    assert_equal 4, @curator.photographs.length
   end
 end
