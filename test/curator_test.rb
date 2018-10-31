@@ -148,4 +148,9 @@ class CuratorTest < Minitest::Test
     @curator.load_artists(@artist_data)
     assert_equal 6, @curator.artists.length
   end
+
+  def test_it_can_find_photos_by_date_range
+    expected = [@photo_1, @photo_4]
+    assert_equal expected, @curator.photographs_taken_between(1950..1965)
+  end
 end
