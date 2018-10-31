@@ -42,4 +42,27 @@ class CuratorTest < Minitest::Test
     assert_equal photo_1, @curator.photographs.first
     assert_equal 'Rue Mouffetard, Paris (Boy with Bottles)', @curator.photographs.first.name
   end
+
+  def test_it_can_add_artists
+    artist_1 = {
+                id: "1"
+                name: "Henri Cartier-Bresson",
+                born: "1908",
+                died: "2004",
+                country: "France"
+               }
+    artist_2 = {
+                id: "2",
+                name: "Ansel Adams",
+                born: "1902",
+                died: "1984",
+                country: "United States"
+               }
+    @curator.add_artist(artist_1)
+    @curator.add_artist(artist_2)
+    expected = [artist_1, artist_2]
+    assert_equal expected, @curator.artists
+    assert_equal artist_1, @curator.artists.first
+    assert_equal 'Henri Cartier-Bresson', @curator.artists.first.name
+  end
 end
