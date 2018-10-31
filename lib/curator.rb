@@ -68,6 +68,4 @@ class Curator
       @artists << Artist.new(hash)
     end
   end
-
-  
 end
