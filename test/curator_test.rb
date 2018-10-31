@@ -142,4 +142,9 @@ class CuratorTest < Minitest::Test
     @curator.load_photographs(@photo_data)
     assert_equal 4, @curator.photographs.length
   end
+
+  def test_it_can_load_artists_from_csv_file
+    @curator.load_artists(@artist_data)
+    assert_equal 6, @curator.artists.length
+  end
 end
