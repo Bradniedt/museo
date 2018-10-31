@@ -118,6 +118,19 @@ class CuratorTest < Minitest::Test
     @curator.add_artist(@artist_1)
     @curator.add_artist(@artist_2)
     @curator.add_artist(@artist_3)
-    assert_equal [@artist_3], @curator.artists_with_multiple_photographs 
+    assert_equal [@artist_3], @curator.artists_with_multiple_photographs
+  end
+
+  def test_it_can_find_photographs_by_artists_from_a_specific_country
+    @curator.add_photograph(@photo_1)
+    @curator.add_photograph(@photo_2)
+    @curator.add_photograph(@photo_3)
+    @curator.add_photograph(@photo_4)
+    @curator.add_artist(@artist_1)
+    @curator.add_artist(@artist_2)
+    @curator.add_artist(@artist_3)
+    expected = [@photo_2, @photo_3, @photo_4]
+    actual = @curator.photographs_taken_by_artists_from("United States")
+    assert_equal expected, actual
   end
 end
